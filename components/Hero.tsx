@@ -84,8 +84,8 @@ export default function Hero() {
             >
               I&apos;m Mostafijur Rahman Sajib — a software engineer and the founder of{' '}
               <span className="font-semibold text-foreground">MRS TECH LABS</span>.
-              I build digital products, share what I learn through writing and
-              videos, and explore the cutting edge of AI and creativity.
+              I build APIs and scalable digital products, share what I learn through writing and
+              videos, and explore the cutting edge of AI.
             </motion.p>
 
             {/* CTAs */}
@@ -140,7 +140,7 @@ export default function Hero() {
               {/* Decorative ring */}
               <div className="absolute inset-0 rounded-3xl border-2 border-border translate-x-3 translate-y-3 -z-10" />
               <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-3xl overflow-hidden bg-surface border border-border shadow-md">
-                <Image src={profile} alt="..." width={288} height={288} />
+                <Image src={profile} alt="Mostafijur Rahman (MR Sajib) — Software Engineer, Bangladesh" width={288} height={288} />
               </div>
               
             </div>

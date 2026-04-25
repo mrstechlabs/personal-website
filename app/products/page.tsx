@@ -30,9 +30,10 @@ const products = [
     title: 'Battery Health Checker',
     description:
       'A utility tool that analyzes device battery health and gives recommendations for optimal performance.',
-    tech: ['React Native', 'System APIs', 'Analytics'],
+    tech: ['React Native', 'System APIs', 'Analytics', 'Android'],
     status: 'Complete',
-    link: '#',
+    link: 'https://play.google.com/store/apps/details?id=com.mrstech.batterycaremonitor',
+    linkLabel: 'View on Play Store',
     year: '2023',
     featured: false,
   },
@@ -40,9 +41,21 @@ const products = [
     title: 'Daily Motivation Quotes',
     description:
       'An elegant app delivering daily motivational quotes with sharing, favorites, and personalized themes.',
-    tech: ['React Native', 'APIs', 'Local Storage'],
+    tech: ['React Native', 'APIs', 'Local Storage', 'Android'],
     status: 'Complete',
-    link: '#',
+    link: 'https://play.google.com/store/apps/details?id=com.mrstech.MotivationQuotes',
+    linkLabel: 'View on Play Store',
+    year: '2022',
+    featured: false,
+  },
+  {
+    title: 'TodoX',
+    description:
+      'A clean and intuitive task management app for Android, helping users stay organized and productive with a minimal, distraction-free interface.',
+    tech: ['React Native', 'Local Storage', 'Android'],
+    status: 'Complete',
+    link: 'https://play.google.com/store/apps/details?id=com.mahmudsajib01.TodoX',
+    linkLabel: 'View on Play Store',
     year: '2022',
     featured: false,
   },
@@ -135,15 +148,29 @@ export default function ProductsPage() {
                   </div>
                   <div className="flex items-center justify-between mt-auto">
                     <span className="text-xs text-muted-foreground">{product.year}</span>
-                    <Link
-                      href={product.link}
-                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-secondary transition-all duration-200 group-hover:gap-2.5"
-                    >
-                      View Product
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </Link>
+                    {product.link.startsWith('http') ? (
+                      <a
+                        href={product.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-secondary transition-all duration-200 group-hover:gap-2.5"
+                      >
+                        {(product as any).linkLabel || 'View Product'}
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </a>
+                    ) : (
+                      <Link
+                        href={product.link}
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-secondary transition-all duration-200 group-hover:gap-2.5"
+                      >
+                        {(product as any).linkLabel || 'View Product'}
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </Link>
+                    )}
                   </div>
                 </motion.div>
               ))}
@@ -169,32 +196,61 @@ export default function ProductsPage() {
                   transition={{ duration: 0.5, delay: 0.35 + i * 0.07 }}
                   className="group py-6 sm:py-7"
                 >
-                  <Link href={product.link} className="flex items-start justify-between gap-4 sm:gap-6">
-                    <div className="flex-1 min-w-0">
-                      <div className="flex flex-wrap items-center gap-2 mb-2">
-                        <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${statusColor[product.status]}`}>
-                          {product.status}
-                        </span>
-                        <span className="text-xs text-muted-foreground">{product.year}</span>
+                  {product.link.startsWith('http') ? (
+                    <a href={product.link} target="_blank" rel="noopener noreferrer" className="flex items-start justify-between gap-4 sm:gap-6">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${statusColor[product.status]}`}>
+                            {product.status}
+                          </span>
+                          <span className="text-xs text-muted-foreground">{product.year}</span>
+                        </div>
+                        <h3 className="font-serif text-lg sm:text-xl font-bold text-foreground group-hover:opacity-70 transition-opacity leading-snug mb-2">
+                          {product.title}
+                        </h3>
+                        <p className="text-sm text-secondary leading-relaxed line-clamp-2 hidden sm:block">
+                          {product.description}
+                        </p>
+                        <div className="flex flex-wrap gap-1.5 mt-3">
+                          {product.tech.map((t) => (
+                            <span key={t} className="tag">{t}</span>
+                          ))}
+                        </div>
                       </div>
-                      <h3 className="font-serif text-lg sm:text-xl font-bold text-foreground group-hover:opacity-70 transition-opacity leading-snug mb-2">
-                        {product.title}
-                      </h3>
-                      <p className="text-sm text-secondary leading-relaxed line-clamp-2 hidden sm:block">
-                        {product.description}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5 mt-3">
-                        {product.tech.map((t) => (
-                          <span key={t} className="tag">{t}</span>
-                        ))}
+                      <div className="shrink-0 mt-1 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all duration-200">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
                       </div>
-                    </div>
-                    <div className="shrink-0 mt-1 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all duration-200">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </div>
-                  </Link>
+                    </a>
+                  ) : (
+                    <Link href={product.link} className="flex items-start justify-between gap-4 sm:gap-6">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${statusColor[product.status]}`}>
+                            {product.status}
+                          </span>
+                          <span className="text-xs text-muted-foreground">{product.year}</span>
+                        </div>
+                        <h3 className="font-serif text-lg sm:text-xl font-bold text-foreground group-hover:opacity-70 transition-opacity leading-snug mb-2">
+                          {product.title}
+                        </h3>
+                        <p className="text-sm text-secondary leading-relaxed line-clamp-2 hidden sm:block">
+                          {product.description}
+                        </p>
+                        <div className="flex flex-wrap gap-1.5 mt-3">
+                          {product.tech.map((t) => (
+                            <span key={t} className="tag">{t}</span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="shrink-0 mt-1 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all duration-200">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </div>
+                    </Link>
+                  )}
                 </motion.div>
               ))}
           </div>
