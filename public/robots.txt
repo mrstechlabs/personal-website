@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mrsajib.me/sitemap.xml
+Sitemap: https://mrsajib.com/sitemap.xml

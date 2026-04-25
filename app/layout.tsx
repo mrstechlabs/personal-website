@@ -14,7 +14,7 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-const BASE_URL = 'https://mrsajib.me'
+const BASE_URL = 'https://mrsajib.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
