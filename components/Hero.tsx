@@ -14,7 +14,7 @@ const stats = [
   { value: 'New', label: 'YouTube Channel' },
   { value: '4+', label: 'Videos Published' },
   { value: '4', label: 'Active Projects' },
-  { value: '3+', label: 'Years Building' },
+  { value: '6+', label: 'Years Building' },
 ]
 
 const socials = [
@@ -104,27 +104,28 @@ export default function Hero() {
             {/* Socials */}
             <motion.div
               {...fade(0.32)}
-              className="flex items-center gap-4 pt-1"
+              className="flex flex-wrap items-center gap-3 pt-1"
             >
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="text-muted-foreground hover:text-foreground transition-colors p-1.5 rounded-lg hover:bg-surface"
-                >
-                  {s.icon}
-                </a>
-              ))}
-              <span className="w-px h-5 bg-border-strong" />
+              <div className="flex items-center gap-1">
+                {socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className="text-muted-foreground hover:text-foreground transition-colors p-1.5 rounded-lg hover:bg-surface"
+                  >
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
+              <span className="hidden sm:block w-px h-5 bg-border-strong" />
               <a
                 href="mailto:hello.mostafij@gmail.com"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium truncate max-w-[220px] sm:max-w-none"
               >
                 hello.mostafij@gmail.com
-
               </a>
             </motion.div>
           </div>

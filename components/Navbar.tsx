@@ -7,7 +7,17 @@ import { motion, AnimatePresence } from 'framer-motion'
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [bannerVisible, setBannerVisible] = useState(true)
+  const [bannerVisible, setBannerVisible] = useState(false)
+
+  useEffect(() => {
+    const dismissed = localStorage.getItem('banner-dismissed')
+    if (!dismissed) setBannerVisible(true)
+  }, [])
+
+  const dismissBanner = () => {
+    localStorage.setItem('banner-dismissed', '1')
+    setBannerVisible(false)
+  }
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20)
@@ -50,7 +60,7 @@ export default function Navbar() {
                   Subscribe free
                 </a>
                 <button
-                  onClick={() => setBannerVisible(false)}
+                  onClick={dismissBanner}
                   aria-label="Dismiss"
                   className="text-background/60 hover:text-background transition-colors p-0.5"
                 >
@@ -116,7 +126,7 @@ export default function Navbar() {
                 <div className="w-5 h-3.5 flex flex-col justify-between">
                   <span
                     className={`block h-0.5 bg-current origin-center transition-all duration-300 ${
-                      mobileOpen ? 'rotate-45 translate-y-1.75' : ''
+                      mobileOpen ? 'rotate-45 translate-y-[7px]' : ''
                     }`}
                   />
                   <span
@@ -126,7 +136,7 @@ export default function Navbar() {
                   />
                   <span
                     className={`block h-0.5 bg-current origin-center transition-all duration-300 ${
-                      mobileOpen ? '-rotate-45 -translate-y-1.75' : ''
+                      mobileOpen ? '-rotate-45 -translate-y-[7px]' : ''
                     }`}
                   />
                 </div>
@@ -145,7 +155,7 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
             className={`fixed left-0 right-0 z-40 bg-background/98 backdrop-blur-xl border-b border-border md:hidden overflow-hidden ${
-              bannerVisible ? 'top-26' : 'top-16'
+              bannerVisible ? 'top-[6.5rem]' : 'top-16'
             }`}
           >
             <div className="max-w-5xl mx-auto px-4 py-5 flex flex-col gap-1">

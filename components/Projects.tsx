@@ -5,12 +5,21 @@ import Link from 'next/link'
 
 const projects = [
   {
+    title: 'ToolEra',
+    description:
+      'A free online tool collection with 60+ utilities for developers, designers, and professionals. Includes password generators, image tools, code formatters, calculators, and more.',
+    tech: ['Next.js', 'TypeScript', 'SEO', 'Tools'],
+    status: 'Active',
+    link: 'https://thetoolera.com',
+    featured: true,
+  },
+  {
     title: 'wapiflow',
     description:
       'A modern API integration platform that simplifies webhook management and workflow automation. Built with Next.js, TypeScript, and real-time database sync.',
     tech: ['Next.js', 'TypeScript', 'Webhooks', 'Database'],
     status: 'Active',
-    link: '#',
+    link: null,
     featured: true,
   },
   {
@@ -19,7 +28,7 @@ const projects = [
       'An online tutoring platform connecting students with expert tutors. Features video sessions, progress tracking, and interactive learning tools.',
     tech: ['React', 'Node.js', 'Video API', 'Analytics'],
     status: 'Active',
-    link: '#',
+    link: null,
     featured: true,
   },
   {
@@ -82,7 +91,7 @@ export default function Projects() {
         </motion.div>
 
         {/* Featured row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
           {projects
             .filter((p) => p.featured)
             .map((project, i) => (
@@ -111,28 +120,34 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {project.link.startsWith('http') ? (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-secondary transition-all duration-200 group-hover:gap-2.5 mt-auto"
-                  >
-                    {(project as any).linkLabel || 'View Project'}
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </a>
+                {project.link ? (
+                  project.link.startsWith('http') ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-secondary transition-all duration-200 group-hover:gap-2.5 mt-auto"
+                    >
+                      {(project as any).linkLabel || 'View Project'}
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </a>
+                  ) : (
+                    <Link
+                      href={project.link}
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-secondary transition-all duration-200 group-hover:gap-2.5 mt-auto"
+                    >
+                      {(project as any).linkLabel || 'View Project'}
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
+                  )
                 ) : (
-                  <Link
-                    href={project.link}
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-secondary transition-all duration-200 group-hover:gap-2.5 mt-auto"
-                  >
-                    {(project as any).linkLabel || 'View Project'}
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </Link>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground mt-auto cursor-default">
+                    Coming Soon
+                  </span>
                 )}
               </motion.div>
             ))}
@@ -166,28 +181,34 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {project.link.startsWith('http') ? (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-secondary transition-all duration-200 group-hover:gap-2.5 mt-auto"
-                  >
-                    {(project as any).linkLabel || 'View Project'}
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </a>
+                {project.link ? (
+                  project.link.startsWith('http') ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-secondary transition-all duration-200 group-hover:gap-2.5 mt-auto"
+                    >
+                      {(project as any).linkLabel || 'View Project'}
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </a>
+                  ) : (
+                    <Link
+                      href={project.link}
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-secondary transition-all duration-200 group-hover:gap-2.5 mt-auto"
+                    >
+                      {(project as any).linkLabel || 'View Project'}
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
+                  )
                 ) : (
-                  <Link
-                    href={project.link}
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-secondary transition-all duration-200 group-hover:gap-2.5 mt-auto"
-                  >
-                    {(project as any).linkLabel || 'View Project'}
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </Link>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground mt-auto cursor-default">
+                    Coming Soon
+                  </span>
                 )}
               </motion.div>
             ))}

@@ -1,0 +1,115 @@
+---
+title: "Introduction to Cloud Computing: A Friendly Guide for Beginners"
+description: "A beginner-friendly breakdown of cloud computing concepts, service models, and why the cloud has become the backbone of modern software."
+date: "2024-02-05"
+tags: ["Cloud", "AWS", "DevOps", "Beginners"]
+canonical: "https://mrsajib.com/articles/introduction-to-cloud-computing"
+devto: "https://medium.com/@mostafijur.rahman299/introduction-to-cloud-computing-a-friendly-guide-for-beginners-bd37d9081ec0"
+published: true
+---
+
+If you've been in tech for more than five minutes, you've heard the word "cloud" thrown around constantly. But what does it actually mean? In this guide, we'll cut through the buzzwords and build a clear, practical understanding of cloud computing from the ground up.
+
+## What Is Cloud Computing?
+
+At its core, cloud computing is the delivery of computing services — servers, storage, databases, networking, software, analytics — over the internet ("the cloud") instead of on your own hardware.
+
+Before the cloud, if you wanted to run a web application, you had to:
+- Buy physical servers
+- Find a data centre to host them
+- Manage hardware failures yourself
+- Pay for capacity you might not use
+
+The cloud flips this model. You rent computing resources from a provider, pay only for what you use, and let them handle the physical infrastructure.
+
+## The Three Service Models
+
+### IaaS — Infrastructure as a Service
+
+You get raw computing resources: virtual machines, storage, networking. You manage the OS, runtime, and everything above.
+
+**Examples:** AWS EC2, Google Compute Engine, Azure Virtual Machines
+
+**When to use it:** When you need fine-grained control over your environment, or you're migrating an existing application.
+
+### PaaS — Platform as a Service
+
+The provider manages the infrastructure and OS. You just deploy your application code.
+
+**Examples:** Heroku, Google App Engine, AWS Elastic Beanstalk, Vercel
+
+**When to use it:** When you want to focus on building your app without worrying about servers.
+
+### SaaS — Software as a Service
+
+The provider delivers a complete application over the internet. You just use it.
+
+**Examples:** Gmail, Slack, Figma, Salesforce
+
+**When to use it:** When you need a ready-made solution and don't want to build it yourself.
+
+## The Four Deployment Models
+
+| Model | Description | Example |
+|---|---|---|
+| Public Cloud | Resources shared across many customers | AWS, Azure, GCP |
+| Private Cloud | Dedicated infrastructure for one organisation | On-prem VMware |
+| Hybrid Cloud | Mix of public and private | Bank using AWS + private DC |
+| Multi-Cloud | Multiple public cloud providers | AWS + GCP together |
+
+## Key Cloud Concepts You Should Know
+
+### Regions and Availability Zones
+
+Cloud providers split their infrastructure into **regions** (geographic areas) and **availability zones** (AZs) — isolated data centres within a region. Deploying across multiple AZs gives you fault tolerance.
+
+### Elasticity and Scalability
+
+**Scalability** means you can handle more load by adding resources. **Elasticity** means the system scales automatically — up when demand spikes, down when it drops — so you don't pay for idle capacity.
+
+### Pay-as-You-Go Pricing
+
+Most cloud services charge by usage: per hour for VMs, per GB for storage, per million requests for serverless functions. This changes your cost model from capital expenditure (buy servers upfront) to operational expenditure (pay as you go).
+
+## The Major Cloud Providers
+
+### Amazon Web Services (AWS)
+
+The oldest and largest cloud platform, launched in 2006. AWS has the broadest service catalogue — over 200 services — and the largest market share. If you're learning cloud, AWS is the safest bet for job market relevance.
+
+### Microsoft Azure
+
+Strong in enterprises already using Microsoft products (Office 365, Active Directory). Azure integrates tightly with Windows Server and .NET ecosystems.
+
+### Google Cloud Platform (GCP)
+
+Google's platform excels at data analytics (BigQuery), machine learning (Vertex AI), and Kubernetes (GKE — Google invented Kubernetes). Smaller market share but growing fast.
+
+## A Simple Example: Hosting a Web App
+
+Let's say you build a Next.js application. Here's how you might deploy it on AWS:
+
+1. **EC2** — run your Node.js server on a virtual machine
+2. **RDS** — managed PostgreSQL database
+3. **S3** — store static assets (images, files)
+4. **CloudFront** — CDN to serve assets globally with low latency
+5. **Route 53** — DNS management for your domain
+6. **ACM** — free SSL certificates
+
+Or you skip most of that complexity and deploy to **Vercel** (PaaS), which handles all of it for you.
+
+## Should You Learn Cloud?
+
+Yes. Cloud skills are now a baseline expectation for backend and DevOps engineers. Even if you're a frontend developer, understanding how your app gets deployed will make you significantly more effective.
+
+**A practical learning path:**
+1. Get an AWS Free Tier account (free for 12 months)
+2. Deploy a simple app to EC2 or Elastic Beanstalk
+3. Study for the AWS Certified Cloud Practitioner exam (entry-level)
+4. Progress to AWS Solutions Architect Associate
+
+## Final Thoughts
+
+The cloud isn't magic — it's someone else's computer, managed really well. Understanding the core concepts (IaaS/PaaS/SaaS, regions, elasticity, pay-as-you-go) gives you the vocabulary to have informed conversations and make sound architectural decisions.
+
+Start small. Spin up a server, deploy something real, watch the billing dashboard, and iterate. That hands-on experience is worth more than any amount of theory.

@@ -7,8 +7,8 @@ const channels = [
   {
     name: 'MR SAJIB ',
     description: 'Tech talks, tutorials, and in-depth discussions about software engineering, programming, and the ever-evolving world of technology.',
-    subscribers: '–',
-    videos: '–',
+    subscribers: 'Growing',
+    videos: '10+',
     link: 'https://www.youtube.com/@mrsajiboffrecord',
     accentColor: 'bg-red-50 border-red-100',
     iconBg: 'bg-red-100',
@@ -18,8 +18,8 @@ const channels = [
   {
     name: 'MR SAJIB Off Record',
     description: 'A peek behind the scenes — life as a founder, travel, personal stories, and the everyday moments that make up the journey.',
-    subscribers: '–',
-    videos: '–',
+    subscribers: 'Growing',
+    videos: '10+',
     link: 'https://www.youtube.com/@mrsajibmahmud',
     accentColor: 'bg-amber-50 border-amber-100',
     iconBg: 'bg-amber-100',
@@ -124,7 +124,7 @@ export default function YouTube() {
             href="https://www.youtube.com/@mrsajiboffrecord"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-background text-foreground font-semibold rounded-full text-sm shrink-0 hover:bg-surface transition-colors"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-background text-foreground font-semibold rounded-full text-sm w-full sm:w-auto shrink-0 hover:bg-surface transition-colors"
           >
             <YouTubeIcon />
             Subscribe on YouTube

@@ -72,7 +72,7 @@ export default function Footer() {
                 name="email"
                 required
                 placeholder="your@email.com"
-                className="flex-1 sm:w-64 px-4 py-3 rounded-full bg-white/10 border border-white/20 text-background placeholder-background/50 text-sm focus:outline-none focus:border-white/50 transition-colors"
+                className="flex-1 min-w-0 sm:w-64 px-4 py-3 rounded-full bg-white/10 border border-white/20 text-background placeholder-background/50 text-sm focus:outline-none focus:border-white/50 transition-colors"
               />
               <button
                 type="submit"

@@ -106,7 +106,7 @@ export default function Contact() {
                   </span>
                   <div>
                     <div className="text-xs text-muted-foreground font-medium uppercase tracking-wider mb-0.5">{link.label}</div>
-                    <div className="text-sm font-semibold text-foreground">{link.value}</div>
+                    <div className="text-sm font-semibold text-foreground break-all">{link.value}</div>
                   </div>
                   <svg className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-0.5 transition-all duration-200 ml-auto shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

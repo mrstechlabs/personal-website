@@ -1,0 +1,153 @@
+---
+title: "Securing Your Django Application: Best Practices for Preventing XSS, CSRF, and More"
+description: "A practical guide to hardening your Django app against common web vulnerabilities including XSS, CSRF, SQL injection, and more."
+date: "2024-03-10"
+tags: ["Django", "Security", "Python", "Web Development"]
+canonical: "https://mrsajib.com/articles/securing-django-application"
+devto: "https://dev.to/mostafij/securing-your-django-application-best-practices-for-preventing-xss-csrf-and-more-27me"
+published: true
+---
+
+Django is one of the most secure web frameworks out there — but no framework can protect you if you misconfigure it or ignore the fundamentals. In this guide, we'll walk through the most critical security practices every Django developer should implement.
+
+## Why Security Matters
+
+Web applications are under constant attack. From automated bots probing for SQL injection to targeted XSS attacks stealing session cookies, the threat landscape is real and always evolving. Django provides solid defaults, but you still need to understand what they do and configure them properly.
+
+## 1. Cross-Site Scripting (XSS)
+
+XSS attacks inject malicious scripts into pages viewed by other users. Django's template engine auto-escapes HTML by default — this is your first line of defense.
+
+**Best practices:**
+
+- Never use `mark_safe()` on user-supplied data
+- Use Django's template system rather than raw string concatenation
+- Set a strong `Content-Security-Policy` header
+- Sanitize rich-text input with a library like `bleach`
+
+```python
+# Bad — never do this
+from django.utils.safestring import mark_safe
+safe_html = mark_safe(user_input)
+
+# Good — let Django's template engine escape it
+context = {'user_input': user_input}
+```
+
+## 2. Cross-Site Request Forgery (CSRF)
+
+CSRF tricks authenticated users into submitting malicious requests. Django's `CsrfViewMiddleware` is enabled by default.
+
+**Checklist:**
+
+- Ensure `django.middleware.csrf.CsrfViewMiddleware` is in `MIDDLEWARE`
+- Always include `{% csrf_token %}` in forms
+- For AJAX, send the CSRF token as an `X-CSRFToken` header
+- Never exempt views unnecessarily with `@csrf_exempt`
+
+```python
+# settings.py — middleware order matters
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    # ...
+]
+```
+
+## 3. SQL Injection
+
+SQL injection remains one of the most dangerous vulnerabilities. Django's ORM parameterises queries automatically.
+
+**Rules:**
+
+- Always use the ORM — never format raw SQL strings with user input
+- If you must write raw SQL, use parameterised queries with `%s` placeholders
+
+```python
+# Vulnerable — NEVER do this
+User.objects.raw(f"SELECT * FROM auth_user WHERE username = '{username}'")
+
+# Safe — use parameterised queries
+User.objects.raw("SELECT * FROM auth_user WHERE username = %s", [username])
+
+# Best — use the ORM
+User.objects.filter(username=username)
+```
+
+## 4. Secure HTTP Headers
+
+Django's `SecurityMiddleware` adds protective headers, but you need to enable them:
+
+```python
+# settings.py
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# In production
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+```
+
+## 5. Secret Key Management
+
+Your `SECRET_KEY` signs sessions, CSRF tokens, and password reset links. Treat it like a password.
+
+```python
+# Bad
+SECRET_KEY = 'django-insecure-hardcoded-key-12345'
+
+# Good — load from environment
+import os
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+```
+
+Use `python-decouple` or `django-environ` to manage environment variables cleanly.
+
+## 6. Password Validation
+
+Django's built-in validators are good, but ensure they're all active:
+
+```python
+AUTH_PASSWORD_VALIDATORS = [
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+     'OPTIONS': {'min_length': 12}},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+]
+```
+
+## 7. Rate Limiting and Brute Force Protection
+
+Django doesn't include rate limiting out of the box. Add `django-ratelimit` or handle it at the infrastructure layer (nginx, Cloudflare).
+
+```python
+from django_ratelimit.decorators import ratelimit
+
+@ratelimit(key='ip', rate='5/m', method='POST', block=True)
+def login_view(request):
+    # ...
+```
+
+## 8. Keep Dependencies Updated
+
+Outdated packages are a major attack vector. Run `pip list --outdated` regularly and subscribe to Django's security mailing list at [https://www.djangoproject.com/weblog/](https://www.djangoproject.com/weblog/).
+
+## Security Checklist Before Production
+
+Before you deploy, run Django's built-in security check:
+
+```bash
+python manage.py check --deploy
+```
+
+This will flag any obvious misconfigurations.
+
+---
+
+Security is not a one-time task — it's an ongoing practice. Start with Django's defaults, enable the production settings above, and audit your code for the patterns described here. Your users are trusting you with their data; take that seriously.
