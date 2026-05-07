@@ -113,27 +113,6 @@ export default async function ArticlePage({ params }: Props) {
             <MDXRemote source={content} />
           </article>
 
-          {/* Footer note */}
-          <div className="mt-14 pt-8 border-t border-border">
-            <div className="bg-surface rounded-2xl p-6 sm:p-8">
-              <p className="text-sm text-secondary leading-relaxed">
-                This article was originally published on{' '}
-                <Link href="https://mrsajib.com" className="text-foreground font-medium underline underline-offset-2 hover:opacity-70 transition-opacity">
-                  mrsajib.com
-                </Link>
-                . If you found it helpful, you can also read it on{' '}
-                <Link
-                  href={frontmatter.devto}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground font-medium underline underline-offset-2 hover:opacity-70 transition-opacity"
-                >
-                  Dev.to →
-                </Link>
-              </p>
-            </div>
-          </div>
-
         </div>
       </main>
       <Footer />

@@ -26,10 +26,10 @@ export default function Navbar() {
   }, [])
 
   const navLinks = [
-    { label: 'About', href: '#about' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Writing', href: '#writing' },
-    { label: 'YouTube', href: '#youtube' },
+    { label: 'About', href: '/#about' },
+    { label: 'Projects', href: '/products' },
+    { label: 'Writing', href: '/articles' },
+    { label: 'YouTube', href: '/#youtube' },
   ]
 
   return (
@@ -98,21 +98,31 @@ export default function Navbar() {
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-0.5">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-secondary hover:text-foreground px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-surface"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) =>
+                link.href.startsWith('/') ? (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="text-secondary hover:text-foreground px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-surface"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="text-secondary hover:text-foreground px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-surface"
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
             </div>
 
             {/* CTA + Hamburger */}
             <div className="flex items-center gap-3">
               <a
-                href="#contact"
+                href="/#contact"
                 className="hidden sm:inline-flex btn-primary py-2 px-5 text-xs"
               >
                 Get in Touch
@@ -159,16 +169,27 @@ export default function Navbar() {
             }`}
           >
             <div className="max-w-5xl mx-auto px-4 py-5 flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-foreground px-4 py-3.5 rounded-xl text-base font-medium transition-all duration-200 hover:bg-surface"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) =>
+                link.href.startsWith('/') ? (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-foreground px-4 py-3.5 rounded-xl text-base font-medium transition-all duration-200 hover:bg-surface"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-foreground px-4 py-3.5 rounded-xl text-base font-medium transition-all duration-200 hover:bg-surface"
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
               <a
                 href="#contact"
                 onClick={() => setMobileOpen(false)}
